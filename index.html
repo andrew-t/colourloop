@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>colourloop</title>
+		<script type="text/javascript" src="colourloop.js"></script>
+		<script type="text/javascript">
+			document.addEventListener('DOMContentLoaded', function() {
+				var c = document.getElementById('c');
+				var ctx = c.getContext('2d');
+				var im = ctx.getImageData(0, 0, c.width, c.height);
+				var loop = RgbLoop.random(5);
+				for (var x = 0, i = 0; x < c.width; ++x)
+					for (var y = 0; y < c.height; ++y) {
+						var theta = Math.atan2(x - c.width / 2, y - c.height / 2);
+						var k = loop.get(theta / (Math.PI * 2));
+						k.asArray().forEach(function(z) {
+							im.data[i++] = z;
+						});
+					}
+				ctx.putImageData(im, 0, 0);
+			});
+		</script>
+	</head>
+	<body>
+		<canvas width="500px" height="500px" id="c"></canvas>
+	</body>
+</html>
