@@ -7,10 +7,10 @@
 				var c = document.getElementById('c');
 				var ctx = c.getContext('2d');
 				var im = ctx.getImageData(0, 0, c.width, c.height);
-				var loop = RgbLoop.random(5);
+				var loop = colourLoop.moviePosterLoop.random();
 				for (var x = 0, i = 0; x < c.width; ++x)
 					for (var y = 0; y < c.height; ++y) {
-						var theta = Math.atan2(x - c.width / 2, y - c.height / 2);
+						var theta = Math.atan2(x - c.width / 2, y - c.height / 2) + Math.PI;
 						var k = loop.get(theta / (Math.PI * 2));
 						k.asArray().forEach(function(z) {
 							im.data[i++] = z;
