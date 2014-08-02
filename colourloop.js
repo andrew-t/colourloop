@@ -73,8 +73,10 @@ var colourLoop = {};
 		// TODO
 	};
 
-	colourLoop.moviePosterLoop = function(r, g, b) {
+	colourLoop.moviePosterLoop = function(r, g, b, p) {
 		this.get = function(i) {
+			i -= p;
+			while (i < 0) ++i; i %= 1;
 			i *= 4;
 			if (i < 1)
 				return new colourLoop.Colour(
@@ -100,12 +102,12 @@ var colourLoop = {};
 	};
 	colourLoop.moviePosterLoop.random = function() {
 		switch (Math.floor(Math.random() * 6)) {
-			case 0: return new colourLoop.moviePosterLoop(1, Math.random(), 0);
-			case 1: return new colourLoop.moviePosterLoop(0, Math.random(), 1);
-			case 2: return new colourLoop.moviePosterLoop(1, 0, Math.random());
-			case 3: return new colourLoop.moviePosterLoop(0, 1, Math.random());
-			case 4: return new colourLoop.moviePosterLoop(Math.random(), 1, 0);
-			case 5: return new colourLoop.moviePosterLoop(Math.random(), 0, 1);
+			case 0: return new colourLoop.moviePosterLoop(1, Math.random(), 0, Math.random());
+			case 1: return new colourLoop.moviePosterLoop(0, Math.random(), 1, Math.random());
+			case 2: return new colourLoop.moviePosterLoop(1, 0, Math.random(), Math.random());
+			case 3: return new colourLoop.moviePosterLoop(0, 1, Math.random(), Math.random());
+			case 4: return new colourLoop.moviePosterLoop(Math.random(), 1, 0, Math.random());
+			case 5: return new colourLoop.moviePosterLoop(Math.random(), 0, 1, Math.random());
 		}
 	};
 
